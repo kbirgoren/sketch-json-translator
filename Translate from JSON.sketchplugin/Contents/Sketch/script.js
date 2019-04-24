@@ -113,12 +113,12 @@ var updateLanguage = function(context) {
           })
         }
 
-
       })
 
     })
 
     sketch.UI.message('Translated')
+    
   }
 
 }
