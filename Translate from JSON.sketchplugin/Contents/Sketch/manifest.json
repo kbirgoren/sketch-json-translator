@@ -1,0 +1,33 @@
+{
+  "name" : "Translate",
+  "description" : "Update variables from JSON file",
+  "author" : "Kurtulus Birgoren",
+  "homepage" : "https://github.com/kbirgoren",
+  "version" : "1.0",
+  "identifier" : "com.translate.from.json",
+  "icon" : "icon.png",
+  "commands" : [
+    {
+      "name" : "Import JSON",
+      "identifier" : "importFileID",
+      "description" : "Import Language File",
+      "script" : "script.js",
+      "handler" : "importFile"
+    },
+    {
+      "name" : "Update All Texts",
+      "shortcut" : "ctrl cmd t",
+      "identifier" : "updateLanguageID",
+      "description" : "Update All Texts",
+      "script" : "script.js",
+      "handler" : "updateLanguage"
+    }
+  ],
+  "menu" : {
+    "title" : "Translate",
+    "items" : [
+      "importFileID",
+      "updateLanguageID"
+    ]
+  }
+}
