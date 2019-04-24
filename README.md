@@ -36,7 +36,8 @@ A Sketch plugin lets you use variables for texts in your designs.
 - Change your text layer name you want to set as variable between underscores like `_page1.hello_` , `_page1.bye_`
 - Go to `Plugin` / `Translate` / `Import JSON` in Sketch
 - Select your `JSON ` formatted file 
-- Let the magic happen!
+- Select language you want to use
+- Booom! Let the magic happen!
 
 ### Useful Tips
 If you added new variables to your artboard after you import the JSON file, you can always go to `Plugin` / `Translate` / `Update All Texts` or use short cut <kbd>cmd</kbd> + <kbd>option</kbd> + <kbd>T</kbd>
