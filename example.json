@@ -1,0 +1,20 @@
+{
+  "en": {
+    "page1": {
+      "hello": "Hello English",
+      "bye": "Good bye English!"
+    }
+  },
+  "nl": {
+    "page1": {
+      "hello": "Hello Dutch",
+      "bye": "Good Bye Dutch!"
+    }
+  },
+  "de": {
+    "page1": {
+      "hello": "Hello German",
+      "bye": "Good Bye German!"
+    }
+  }
+}
