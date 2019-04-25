@@ -35,6 +35,7 @@ Create your langauge JSON like below. Don't forget to create an object for each 
 
 #### Text Layers
 - Change your text layer name you want to set as variable between square brackets
+
 Example: `[page1.hello]` , `[page1.bye]`
 
 #### Symbols
