@@ -100,20 +100,6 @@ var updateLanguage = function (context) {
                         })
                     }
                 }
-
-               
-                // if (layer.type === 'SymbolInstance') {
-                //     layer.overrides.forEach(override => {
-                //         variableName = layer.name
-                //         if (checkRegex(variableName)) {
-                //             translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-                //             if (override.affectedLayer.type === 'Text') {
-                //                 if (translation) override.value = translation;
-                //                 else override.value = 'ERROR:' + variableName + '';
-                //             }
-                //         }
-                //     })
-                // }
             })
         })
         sketch.UI.message('Translated')
