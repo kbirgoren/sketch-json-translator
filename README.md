@@ -33,7 +33,7 @@ A Sketch plugin lets you use variables for texts in your designs.
 }
 ```
 
-- Change your text layer name you want to set as variable between underscores like `_page1.hello_` , `_page1.bye_`
+- Change your text layer name you want to set as variable between brackets like `[page1.hello]` , `[page1.bye]`
 - Go to `Plugin` / `Translate` / `Import JSON` in Sketch
 - Select your `JSON ` formatted file 
 - Select language you want to use
