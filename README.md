@@ -8,9 +8,9 @@ A Sketch plugin lets you use variables for texts in your designs.
 
 ### How to use?
 
-- Create your langauge JSON like below. Don't forget to create another object for each language.
+Create your langauge JSON like below. Don't forget to create an object for each language.
 
-```json
+```javascript
 {
   "en": {
     "page1": {
@@ -33,11 +33,23 @@ A Sketch plugin lets you use variables for texts in your designs.
 }
 ```
 
-- Change your text layer name you want to set as variable between brackets like `[page1.hello]` , `[page1.bye]`
+#### Text Layers
+- Change your text layer name you want to set as variable between square brackets
+Example: `[page1.hello]` , `[page1.bye]`
+
+#### Symbols
+- Create your symbol and give unique names to text layers in it.
+- Add your symbol to your artboard.
+- Add your override name & JSON key between braclets after your symbol name.
+Example: `MyButtonSymbol (button_text=button.submit)`
+- If you have multiple text overrides in a symbol add comma between definations.
+Example: `HeaderSymbol (title=homepage.title, subtitle=homepage.subtitle)`
+
+#### Apply It
 - Go to `Plugin` / `Translate` / `Import JSON` in Sketch
 - Select your `JSON ` formatted file 
 - Select language you want to use
 - Booom! Let the magic happen!
 
 ### Useful Tips
-If you added new variables to your artboard after you import the JSON file, you can always go to `Plugin` / `Translate` / `Update All Texts` or use short cut <kbd>cmd</kbd> + <kbd>option</kbd> + <kbd>T</kbd>
+If you added new variables to your artboard after you import the JSON file, you can always go to `Plugin` / `Translate` / `Update All Texts` or use short cut <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>T</kbd>
