@@ -21,7 +21,12 @@ var readLanguageFile = function(filePath, mutable) {
 }
 
 var checkRegex = function(string){
-    if (string.match(/\_(.*?)\_/)) return string.match(/\_(.*?)\_/)[1];
+    if (string.match(/\[(.*?)\]/)) return string.match(/\[(.*?)\]/)[1];
+    else return false;
+}
+
+var checkVariablesForSymbol = function(string){
+    if (string.match(/\((.*?)\)/)) return string.match(/\((.*?)\)/)[1];
     else return false;
 }
 
@@ -65,12 +70,12 @@ var updateLanguage = function (context) {
     selectedLanguage = availableLanguages[dropdownSelectedIndex];
     document.pages.forEach(translate)
 
-    function translate(object) {
-        object.layers.forEach(artboard => {
-            artboard.layers.forEach(layer => {
+    function translate(page) {
+        page.layers.forEach(layer => {
+            layer.layers.forEach(layer => {
                 
                 if (layer.type === 'Text') {
-                    variableName = layer.name
+                    var variableName = layer.name
                     if (checkRegex(variableName)) {
                         sketch.UI.message('Translating:' + variableName)
                         translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
@@ -79,19 +84,36 @@ var updateLanguage = function (context) {
                         layer.name = variableName;
                     }
                 }
-               
-                if (layer.type === 'SymbolInstance') {
-                    layer.overrides.forEach(override => {
-                        variableName = override.affectedLayer.name
-                        if (checkRegex(variableName)) {
+
+                if (layer.type == 'SymbolInstance' && checkVariablesForSymbol(layer.name)){
+                    var variables = checkVariablesForSymbol(layer.name)
+                    var variablesArray = variables.split(',')                       
+                    for(i=0; i < variablesArray.length; i++){       
+                        var overrideName = variablesArray[i].split('=')[0]
+                        var variableName = variablesArray[i].split('=')[1]              
+                        layer.overrides.forEach(override=>{
                             translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-                            if (override.affectedLayer.type === 'Text') {
-                                if (translation) override.value = translation;
+                            if (override.affectedLayer.name === overrideName) {
+                                if (translation) override.value = translation
                                 else override.value = 'ERROR:' + variableName + '';
                             }
-                        }
-                    })
+                        })
+                    }
                 }
+
+               
+                // if (layer.type === 'SymbolInstance') {
+                //     layer.overrides.forEach(override => {
+                //         variableName = layer.name
+                //         if (checkRegex(variableName)) {
+                //             translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+                //             if (override.affectedLayer.type === 'Text') {
+                //                 if (translation) override.value = translation;
+                //                 else override.value = 'ERROR:' + variableName + '';
+                //             }
+                //         }
+                //     })
+                // }
             })
         })
         sketch.UI.message('Translated')
