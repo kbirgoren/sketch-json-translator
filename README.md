@@ -2,7 +2,7 @@
 A Sketch plugin lets you use variables for texts in your designs.
 
 ### Installation
-1. [Download](https://github.com/kbirgoren/sketch-json-translator.git) the plugin
+1. [Download](https://github.com/kbirgoren/sketch-json-translator/archive/master.zip) the plugin
 2. Double click the plugin file to automatically install
 3. The shortcut should now be available under the `Plugin`'s menu in `Sketch`
 
