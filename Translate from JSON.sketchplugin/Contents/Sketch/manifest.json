@@ -6,6 +6,7 @@
   "version" : "1.0",
   "identifier" : "com.translate.from.json",
   "icon" : "icon.png",
+  "appcast": "https://raw.githubusercontent.com/kbirgoren/sketch-json-translator/master/appcast.xml",
   "commands" : [
     {
       "name" : "Import JSON",
