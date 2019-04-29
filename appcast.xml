@@ -8,7 +8,7 @@
     <item>
       <title>Version 1.0</title>
       <description/>
-      <enclosure url="https://github.com/kbirgoren/sketch-json-translator/archive/master.zip" sparkle:version="1.0"/>
+      <enclosure url="https://github.com/kbirgoren/sketch-json-translator/releases/download/1.0/sketch-json-translator.zip" sparkle:version="1.0"/>
     </item>
   </channel>
 </rss>
