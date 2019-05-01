@@ -1,8 +1,10 @@
-### Translate-From-JSON
+# Translate From JSON
+[<img src="https://img.shields.io/badge/release-v1.0-brightgreen.svg">](https://github.com/kbirgoren/sketch-json-translator/releases/download/1.0/sketch-json-translator.zip)
+
 A Sketch plugin lets you use variables for texts in your designs.
 
 ### Installation
-1. [Download](https://github.com/kbirgoren/sketch-json-translator/archive/master.zip) the plugin
+1. [Download](https://github.com/kbirgoren/sketch-json-translator/releases/download/1.0/sketch-json-translator.zip) the plugin
 2. Double click the plugin file to automatically install
 3. The shortcut should now be available under the `Plugin`'s menu in `Sketch`
 
