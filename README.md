@@ -45,7 +45,7 @@ Example: `[page1.hello]` , `[page1.bye]`
 - Add your symbol to your artboard.
 - Add your override name & JSON key between braclets after your symbol name.
 
-Example: `MyButtonSymbol (button_text=[button.submit})`
+Example: `MyButtonSymbol (button_text=[button.submit])`
 - If you have multiple text overrides in a symbol add comma between definations.
 
 Example: `HeaderSymbol (title=[homepage.title], subtitle=[homepage.subtitle])`
