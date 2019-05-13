@@ -55,51 +55,72 @@ var importFile = function (context) {
     saveLanguageFile(stringify(fileContent), context.scriptPath);
     updateLanguage(context)
 }
-var updateLanguage = function (context) {
-    
+
+
+
+var updateLanguage = function(context) {
+
     sketch.UI.message('Updating...')
-    
+
     var contextApi = context.api();
     var document = sketch.getSelectedDocument();
     var selectedLanguage = null;
     var languageData = readLanguageFile(context.scriptPath);
     var availableLanguages = Object.keys(languageData);
     var dropdown = contextApi.getSelectionFromUser("Choose A Language", availableLanguages, 0);
-    
+
     dropdownSelectedIndex = dropdown[1];
     selectedLanguage = availableLanguages[dropdownSelectedIndex];
     document.pages.forEach(translate)
 
+    function translateTextLayer(layer) {
+        var variableName = layer.name
+        if (checkRegex(variableName)) {
+            sketch.UI.message('Translating:' + variableName)
+            translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+            if (translation) layer.text = translation;
+            else layer.text = 'ERROR:' + variableName + '';
+            layer.name = variableName;
+        }
+    }
+
+    function translateSymbolLayer(layer) {
+        var variables = checkVariablesForSymbol(layer.name)
+        var variablesArray = variables.split(',')
+        for (i = 0; i < variablesArray.length; i++) {
+            var overrideName = variablesArray[i].split('=')[0]
+            var variableName = variablesArray[i].split('=')[1]
+            layer.overrides.forEach(override => {
+                if (override.property === 'stringValue') {
+                    translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+                    if (override.affectedLayer.name === overrideName) {
+                        if (translation) override.value = translation
+                        else override.value = 'ERROR:' + variableName + '';
+                    }
+                }
+            })
+        }
+    }
+
     function translate(page) {
         page.layers.forEach(layer => {
             layer.layers.forEach(layer => {
-                
-                if (layer.type === 'Text') {
-                    var variableName = layer.name
-                    if (checkRegex(variableName)) {
-                        sketch.UI.message('Translating:' + variableName)
-                        translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-                        if (translation) layer.text = translation;
-                        else layer.text = 'ERROR:' + variableName + '';
-                        layer.name = variableName;
-                    }
+
+                if (layer.type === 'Text') translateTextLayer(layer)
+
+                if (layer.type === 'SymbolInstance' && checkVariablesForSymbol(layer.name)) translateSymbolLayer(layer)
+
+                if (layer.type === "Group") {
+
+                    layer.layers.forEach(layer => {
+
+                        if (layer.type === 'Text') translateTextLayer(layer)
+
+                        if (layer.type === 'SymbolInstance' && checkVariablesForSymbol(layer.name)) translateSymbolLayer(layer)
+
+                    })
                 }
 
-                if (layer.type == 'SymbolInstance' && checkVariablesForSymbol(layer.name)){
-                    var variables = checkVariablesForSymbol(layer.name)
-                    var variablesArray = variables.split(',')                       
-                    for(i=0; i < variablesArray.length; i++){       
-                        var overrideName = variablesArray[i].split('=')[0]
-                        var variableName = variablesArray[i].split('=')[1]              
-                        layer.overrides.forEach(override=>{
-                            translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-                            if (override.affectedLayer.name === overrideName) {
-                                if (translation) override.value = translation
-                                else override.value = 'ERROR:' + variableName + '';
-                            }
-                        })
-                    }
-                }
             })
         })
         sketch.UI.message('Translated')
