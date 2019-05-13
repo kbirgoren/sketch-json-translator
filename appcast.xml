@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Translate From JSON</title>
-    <link>https://raw.githubusercontent.com/kbirgoren/sketch-json-translator/master/appcast.xml</link>
-    <description>A Sketch plugin lets you use variables for texts in your designs.</description>
-    <language>en</language>
     <item>
       <title>Version 1.1</title>
-      <description/>
+      <description>Some bug fix and improvement</description>
       <enclosure url="https://github.com/kbirgoren/sketch-json-translator/archive/1.1.zip" sparkle:version="1.1"/>
     </item>
-  </channel>
-  <channel>
+      <item>
     <title>Translate From JSON</title>
     <link>https://raw.githubusercontent.com/kbirgoren/sketch-json-translator/master/appcast.xml</link>
     <description>A Sketch plugin lets you use variables for texts in your designs.</description>
     <language>en</language>
-    <item>
       <title>Version 1.0</title>
       <description/>
       <enclosure url="https://github.com/kbirgoren/sketch-json-translator/releases/download/1.0/sketch-json-translator.zip" sparkle:version="1.0"/>
