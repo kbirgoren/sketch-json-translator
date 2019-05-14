@@ -68,6 +68,7 @@ var updateLanguage = function(context) {
     var languageData = readLanguageFile(context.scriptPath);
     var availableLanguages = Object.keys(languageData);
     var dropdown = contextApi.getSelectionFromUser("Choose A Language", availableLanguages, 0);
+    var updateCounter = 0;
 
     dropdownSelectedIndex = dropdown[1];
     selectedLanguage = availableLanguages[dropdownSelectedIndex];
@@ -76,9 +77,11 @@ var updateLanguage = function(context) {
     function translateTextLayer(layer) {
         var variableName = layer.name
         if (checkRegex(variableName)) {
-            sketch.UI.message('Translating:' + variableName)
             translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-            if (translation) layer.text = translation;
+            if (translation) {
+                layer.text = translation;
+                updateCounter++
+            }
             else layer.text = 'ERROR:' + variableName + '';
             layer.name = variableName;
         }
@@ -90,21 +93,27 @@ var updateLanguage = function(context) {
         for (i = 0; i < variablesArray.length; i++) {
             var overrideName = variablesArray[i].split('=')[0]
             var variableName = variablesArray[i].split('=')[1]
-            layer.overrides.forEach(override => {
-                if (override.property === 'stringValue') {
-                    translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
-                    if (override.affectedLayer.name === overrideName) {
-                        if (translation) override.value = translation
-                        else override.value = 'ERROR:' + variableName + '';
+            if (variableName != undefined){
+                layer.overrides.forEach(override => {
+                    if (override.property === 'stringValue') {
+                        translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+                        if (override.affectedLayer.name === overrideName) {
+                            if (translation){
+                                override.value = translation;
+                                updateCounter++
+                            }
+                            else override.value = 'ERROR:' + variableName + '';
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
 
     function translate(page) {
         page.layers.forEach(layer => {
-            layer.layers.forEach(layer => {
+
+            layer.layers && layer.layers.forEach(layer => {
 
                 if (layer.type === 'Text') translateTextLayer(layer)
 
@@ -112,7 +121,7 @@ var updateLanguage = function(context) {
 
                 if (layer.type === "Group") {
 
-                    layer.layers.forEach(layer => {
+                    layer.layers && layer.layers.forEach(layer => {
 
                         if (layer.type === 'Text') translateTextLayer(layer)
 
@@ -123,6 +132,6 @@ var updateLanguage = function(context) {
 
             })
         })
-        sketch.UI.message('Translated')
+        sketch.UI.message(updateCounter + ' text translated')
     }
 }
