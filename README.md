@@ -48,7 +48,7 @@ Example: `[page1.hello]` , `[page1.bye]`
 Example: `MyButtonSymbol (button_text=[button.submit])`
 - If you have multiple text overrides in a symbol add comma between definations.
 
-Example: `HeaderSymbol (title=[homepage.title], subtitle=[homepage.subtitle])`
+Example: `HeaderSymbol (title=[homepage.title],subtitle=[homepage.subtitle])`
 
 #### Apply It
 - Go to `Plugin` / `Translate` / `Import JSON` in Sketch
