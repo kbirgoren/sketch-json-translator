@@ -8,6 +8,12 @@ A Sketch plugin lets you use variables for texts in your designs.
 2. Double click the plugin file to automatically install
 3. The shortcut should now be available under the `Plugin`'s menu in `Sketch`
 
+Or Install with Sketchpacks
+
+<a href="https://sketchpacks.com/kbirgoren/sketch-json-translator/install">
+  <img width="160" height="41" src="http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png" >
+</a>
+
 ### How to use?
 
 Create your langauge JSON like below. Don't forget to create an object for each language.
