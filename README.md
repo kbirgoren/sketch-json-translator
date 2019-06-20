@@ -1,5 +1,5 @@
 # Translate From JSON
-[<img src="https://img.shields.io/badge/release-v1.1-brightgreen.svg">](https://github.com/kbirgoren/sketch-json-translator/releases/tag/1.1)
+[<img src="https://img.shields.io/badge/release-v1.2-brightgreen.svg">](https://github.com/kbirgoren/sketch-json-translator/releases/tag/1.2)
 
 A Sketch plugin lets you use variables for texts in your designs.
 
