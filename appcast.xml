@@ -4,6 +4,11 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
 		<item>
+			<title>Version 1.2</title>
+			<description>Special characters problem solved.</description>
+			<enclosure url="https://github.com/kbirgoren/sketch-json-translator/archive/1.2.zip" sparkle:version="1.2"/>
+		</item>
+		<item>
 			<title>Version 1.1</title>
 			<description>Some bug fix and improvement</description>
 			<enclosure url="https://github.com/kbirgoren/sketch-json-translator/archive/1.1.zip" sparkle:version="1.1"/>
