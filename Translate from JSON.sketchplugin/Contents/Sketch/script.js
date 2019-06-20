@@ -51,7 +51,8 @@ var importFile = function (context) {
         sketch.UI.message('Cancelled')
     }
 
-    var fileContent = JSON.parse(NSString.stringWithContentsOfFile(languageFile))
+    var fileContent = JSON.parse([NSString stringWithContentsOfFile:languageFile encoding:NSUTF8StringEncoding error:nil]);
+
     saveLanguageFile(stringify(fileContent), context.scriptPath);
     updateLanguage(context)
 }
