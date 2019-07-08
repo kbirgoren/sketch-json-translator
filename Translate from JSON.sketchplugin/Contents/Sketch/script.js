@@ -68,17 +68,33 @@ var updateLanguage = function(context) {
     var selectedLanguage = null;
     var languageData = readLanguageFile(context.scriptPath);
     var availableLanguages = Object.keys(languageData);
-    var dropdown = contextApi.getSelectionFromUser("Choose A Language", availableLanguages, 0);
+
+        if (availableLanguages.indexOf('en')){
+            availableLanguages.splice(availableLanguages.indexOf('en'), 1);
+            languageList = ['en'];
+            languageList = languageList.concat(availableLanguages);
+        }
+        else{
+            languageList = ['en yok'];
+        }
+    
+    var dropdown = contextApi.getSelectionFromUser("Choose A Language", languageList, 0);
     var updateCounter = 0;
 
     dropdownSelectedIndex = dropdown[1];
     selectedLanguage = availableLanguages[dropdownSelectedIndex];
     document.pages.forEach(translate)
 
+    function resolveValue(path) {
+        return path.split('.').reduce((prev, curr) => {
+            return prev ? prev[curr] : null;
+        }, languageData || self)
+    }
+
     function translateTextLayer(layer) {
         var variableName = layer.name
         if (checkRegex(variableName)) {
-            translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+            translation = resolveValue(selectedLanguage + '.' + checkRegex(variableName) + '')
             if (translation) {
                 layer.text = translation;
                 updateCounter++
@@ -97,7 +113,7 @@ var updateLanguage = function(context) {
             if (variableName != undefined){
                 layer.overrides.forEach(override => {
                     if (override.property === 'stringValue') {
-                        translation = eval('languageData.' + selectedLanguage + '.' + checkRegex(variableName) + '')
+                        translation = resolveValue(selectedLanguage + '.' + checkRegex(variableName) + '')
                         if (override.affectedLayer.name === overrideName) {
                             if (translation){
                                 override.value = translation;
