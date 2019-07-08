@@ -75,14 +75,14 @@ var updateLanguage = function(context) {
             languageList = languageList.concat(availableLanguages);
         }
         else{
-            languageList = ['en yok'];
+            languageList = availableLanguages;
         }
     
     var dropdown = contextApi.getSelectionFromUser("Choose A Language", languageList, 0);
     var updateCounter = 0;
 
     dropdownSelectedIndex = dropdown[1];
-    selectedLanguage = availableLanguages[dropdownSelectedIndex];
+    selectedLanguage = languageList[dropdownSelectedIndex];
     document.pages.forEach(translate)
 
     function resolveValue(path) {
@@ -92,6 +92,7 @@ var updateLanguage = function(context) {
     }
 
     function translateTextLayer(layer) {
+        console.log(selectedLanguage);
         var variableName = layer.name
         if (checkRegex(variableName)) {
             translation = resolveValue(selectedLanguage + '.' + checkRegex(variableName) + '')
