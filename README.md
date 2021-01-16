@@ -1,3 +1,12 @@
+# Important Note
+Thanks for your interest.
+
+It's been a very long time since I developed this plugin.  I guess many new version has been released by Sketch during that time and I could not have any time to keep the plugin up to date with new versions. 
+
+Unfortunately I don't expect to update the plugin soon either. So sorry for that :(
+
+---
+
 # Translate From JSON
 [<img src="https://img.shields.io/badge/release-v1.2.6-brightgreen.svg">](https://github.com/kbirgoren/sketch-json-translator/releases/tag/1.2.6)
 
